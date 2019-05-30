@@ -1,6 +1,6 @@
 package com.example.cats.mvp.presenter;
 
-import com.example.cats.mvp.model.Repository;
+import com.example.cats.mvp.model.repository.Repository;
 
 public class CatListPresenter {
 

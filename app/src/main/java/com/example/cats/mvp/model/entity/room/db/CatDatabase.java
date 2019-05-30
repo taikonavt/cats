@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.cats.mvp.model.entity.room.RoomCat;
+import com.example.cats.mvp.model.entity.room.dao.CatDao;
 
 @Database(entities = RoomCat.class, version = 1)
 public abstract class CatDatabase extends RoomDatabase {

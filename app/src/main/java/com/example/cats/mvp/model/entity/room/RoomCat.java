@@ -27,11 +27,11 @@ public class RoomCat {
         this.name = name;
     }
 
-    public String getUrl() {
+    public String getPictureUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setPictureUrl(String url) {
         this.url = url;
     }
 }

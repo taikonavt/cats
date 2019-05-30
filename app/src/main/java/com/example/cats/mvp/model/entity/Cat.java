@@ -5,6 +5,11 @@ public class Cat {
     private String name;
     private String pictureUrl;
 
+    public Cat(String name, String url) {
+        this.name = name;
+        this.pictureUrl = url;
+    }
+
     public String getName() {
         return name;
     }
