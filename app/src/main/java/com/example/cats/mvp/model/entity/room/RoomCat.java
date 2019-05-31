@@ -10,11 +10,11 @@ public class RoomCat {
     @NonNull
     @PrimaryKey
     private String name;
-    private String url;
+    private String pictureUrl;
 
-    public RoomCat(@NonNull String name, String url){
+    public RoomCat(@NonNull String name, String pictureUrl){
         this.name = name;
-        this.url = url;
+        this.pictureUrl = pictureUrl;
     }
 
 
@@ -28,10 +28,10 @@ public class RoomCat {
     }
 
     public String getPictureUrl() {
-        return url;
+        return pictureUrl;
     }
 
     public void setPictureUrl(String url) {
-        this.url = url;
+        this.pictureUrl = url;
     }
 }

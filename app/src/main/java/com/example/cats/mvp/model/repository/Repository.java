@@ -16,6 +16,7 @@ public class Repository {
     public Repository(){
         dataSource = new DataSource();
         cache = new RoomCache();
+        updateCatsList();
     }
 
     public LiveData<List<Cat>> getCatsList(){

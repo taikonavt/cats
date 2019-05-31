@@ -49,6 +49,6 @@ public interface CatDao {
     @Query("SELECT * FROM roomcat")
     LiveData<List<RoomCat>> getAll();
 
-    @Query("SELECT * FROM roomcat WHERE url = :url LIMIT 1")
+    @Query("SELECT * FROM roomcat WHERE pictureUrl = :url LIMIT 1")
     RoomCat findByUrl(String url);
 }

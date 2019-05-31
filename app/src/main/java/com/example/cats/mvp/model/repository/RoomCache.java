@@ -30,16 +30,30 @@ public class RoomCache implements ICache {
     }
 
     @Override
-    public void updateCatList(List<Cat> catList) {
+    public void updateCatList(final List<Cat> catList) {
         List<RoomCat> roomCatList = CatDatabase.getInstance().getCatDao()
                 .getAll().getValue();
-        for (int i = 0; i < catList.size(); i++) {
-            Cat newCat = catList.get(i);
-            for (int j = 0; j < roomCatList.size(); j++) {
-                Cat oldCat = castCat(roomCatList.get(j));
-                if (!newCat.equals(oldCat)){
-                    RoomCat newRoomCat = castRoomCat(newCat);
-                    CatDatabase.getInstance().getCatDao().update(newRoomCat);
+        if (roomCatList == null){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CatDatabase.getInstance().getCatDao().insert(castRoomCat(catList));
+                }
+            }).start();
+        } else {
+            for (int i = 0; i < catList.size(); i++) {
+                Cat newCat = catList.get(i);
+                for (int j = 0; j < roomCatList.size(); j++) {
+                    Cat oldCat = castCat(roomCatList.get(j));
+                    if (!newCat.equals(oldCat)) {
+                        final RoomCat newRoomCat = castRoomCat(newCat);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                CatDatabase.getInstance().getCatDao().update(newRoomCat);
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -51,5 +65,13 @@ public class RoomCache implements ICache {
 
     private RoomCat castRoomCat(Cat cat){
         return new RoomCat(cat.getName(), cat.getPictureUrl());
+    }
+
+    private List<RoomCat> castRoomCat(List<Cat> catList){
+        List<RoomCat> roomCatList = new ArrayList<>();
+        for (Cat cat : catList) {
+            roomCatList.add(castRoomCat(cat));
+        }
+        return roomCatList;
     }
 }
