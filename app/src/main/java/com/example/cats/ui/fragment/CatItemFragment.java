@@ -10,4 +10,7 @@ public class CatItemFragment extends Fragment {
         CatItemFragment fragment = new CatItemFragment();
         return fragment;
     }
+
+
+
 }

@@ -21,8 +21,8 @@ public class CatsFragmentPresenter {
         this.view = view;
         repository = new Repository();
         data = repository.getCatsList();
-        view.observeData(data);
         catListPresenter = new CatListPresenter();
+        view.observeData(data);
     }
 
     public ICatListPresenter getCatListPresenter(){
@@ -45,7 +45,9 @@ public class CatsFragmentPresenter {
             List<Cat> list = data.getValue();
             int pos = itemView.getPos();
             if (list != null) {
-                itemView.setName(list.get(pos).getName());
+                Cat cat = list.get(pos);
+                itemView.setName(cat.getName());
+                itemView.setImage(cat.getPictureUrl());
             }
         }
 

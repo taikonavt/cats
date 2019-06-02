@@ -17,7 +17,6 @@ import com.example.cats.mvp.model.entity.Cat;
 import com.example.cats.mvp.presenter.CatsFragmentPresenter;
 import com.example.cats.mvp.view.CatsFragmentView;
 import com.example.cats.mvp.view.MainActivityView;
-import com.example.cats.ui.activity.MainActivity;
 import com.example.cats.ui.adapter.CatsListAdapter;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class CatsFragment extends Fragment implements CatsFragmentView {
 
         presenter = new CatsFragmentPresenter(this);
 
-        recyclerView = (RecyclerView) getView().findViewById(R.id.rv_list);
+        recyclerView = (RecyclerView) getView().findViewById(R.id.fragment_list_rv);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
