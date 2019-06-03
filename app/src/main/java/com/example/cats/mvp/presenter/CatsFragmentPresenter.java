@@ -29,6 +29,14 @@ public class CatsFragmentPresenter {
         return catListPresenter;
     }
 
+    public void onSwipeRefresh() {
+        repository.updateCatsList();
+    }
+
+    public void onMenuRefresh() {
+        repository.updateCatsList();
+    }
+
     private class CatListPresenter implements ICatListPresenter{
 
         @Override
