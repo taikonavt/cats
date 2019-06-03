@@ -3,6 +3,7 @@ package com.example.cats.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.cats.R;
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity
     public void setCatItemFragment(Cat cat) {
         CatItemFragment fragment = CatItemFragment.getInstance(cat);
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.container, fragment)
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        transaction.replace(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
     }
