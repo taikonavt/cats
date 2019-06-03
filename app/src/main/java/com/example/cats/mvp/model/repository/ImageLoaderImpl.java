@@ -3,7 +3,10 @@ package com.example.cats.mvp.model.repository;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.example.cats.ui.customviews.CustomView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,11 +17,11 @@ import java.net.URL;
 public class ImageLoaderImpl implements IImageLoader {
 
     @Override
-    public void loadInto(String pictureUrl, ImageView image, int imageWidth) {
+    public void loadInto(String pictureUrl, View view, int imageWidth) {
         try {
             URL url = new URL(pictureUrl);
             DownloadImageTask task = new DownloadImageTask();
-            task.execute(url, image, imageWidth);
+            task.execute(url, view, imageWidth);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -26,13 +29,13 @@ public class ImageLoaderImpl implements IImageLoader {
 
     private class DownloadImageTask extends AsyncTask<Object, Void, Bitmap>{
 
-        private WeakReference<ImageView> imageViewWeakReference;
+        private WeakReference<View> viewWeakReference;
         private int imageWidth;
 
         @Override
         protected Bitmap doInBackground(Object... objects) {
             URL url = (URL) objects[0];
-            imageViewWeakReference = new WeakReference<ImageView>((ImageView) objects[1]);
+            viewWeakReference = new WeakReference<View>((View) objects[1]);
             imageWidth = (int) objects[2];
             Bitmap bitmap = null;
             try {
@@ -50,9 +53,14 @@ public class ImageLoaderImpl implements IImageLoader {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            ImageView imageView = imageViewWeakReference.get();
-            if (imageView != null && bitmap != null){
-                imageView.setImageBitmap(bitmap);
+            View view = viewWeakReference.get();
+
+            if (view != null && bitmap != null){
+                if (view instanceof ImageView){
+                    ((ImageView) view).setImageBitmap(bitmap);
+                } else if (view instanceof CustomView){
+                    ((CustomView) view).setImageBitmap(bitmap);
+                }
             }
         }
 

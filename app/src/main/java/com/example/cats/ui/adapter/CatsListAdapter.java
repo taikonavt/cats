@@ -2,18 +2,15 @@ package com.example.cats.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.cats.R;
 import com.example.cats.mvp.model.repository.IImageLoader;
 import com.example.cats.mvp.model.repository.ImageLoaderImpl;
 import com.example.cats.mvp.presenter.list.ICatListPresenter;
 import com.example.cats.mvp.view.item.CatItemView;
+import com.example.cats.ui.customviews.CustomView;
 
 public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyViewHolder> {
 
@@ -28,8 +25,7 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.item_cat, viewGroup, false);
+        View view = new CustomView(viewGroup.getContext());
         return new MyViewHolder(view);
     }
 
@@ -52,13 +48,9 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements CatItemView {
         private int position;
-        private ImageView image;
-        private TextView name;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.item_cat_image);
-            name = itemView.findViewById(R.id.item_cat_name_tv);
         }
 
         @Override
@@ -68,14 +60,15 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
 
         @Override
         public void setImage(String pictureUrl){
-            image.setImageResource(R.drawable.ic_android_black_24dp);
-            Log.d("mytag", this.toString());
-            imageLoader.loadInto(pictureUrl, image, 128);
+            CustomView customView = (CustomView) itemView;
+            customView.setImageResource(R.drawable.ic_android_black_24dp);
+            imageLoader.loadInto(pictureUrl, customView, 128);
         }
 
         @Override
         public void setName(String string){
-            name.setText(string);
+            CustomView customView = (CustomView) itemView;
+            customView.setName(string);
         }
     }
 }

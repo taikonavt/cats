@@ -1,7 +1,10 @@
 package com.example.cats.mvp.model.repository;
 
-import android.widget.ImageView;
+import android.view.View;
+
+import com.example.cats.ui.customviews.CustomView;
 
 public interface IImageLoader {
-    void loadInto(String pictureUrl, ImageView image, int imageWidth);
+
+    void loadInto(String pictureUrl, View view, int imageWidth);
 }
