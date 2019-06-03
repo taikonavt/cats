@@ -51,11 +51,13 @@ public class CatsFragment extends Fragment implements CatsFragmentView {
 
         adapter = new CatsListAdapter(presenter.getCatListPresenter());
         recyclerView.setAdapter(adapter);
+
+        getActivity().setTitle(R.string.app_name);
     }
 
     @Override
     public void setCatItemFragment(Cat cat) {
-        ((MainActivityView) getView()).setCatItemFragment(cat);
+        ((MainActivityView) getActivity()).setCatItemFragment(cat);
     }
 
     @Override

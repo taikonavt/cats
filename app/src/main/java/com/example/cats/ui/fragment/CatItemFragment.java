@@ -14,6 +14,7 @@ import com.example.cats.R;
 import com.example.cats.mvp.model.entity.Cat;
 import com.example.cats.mvp.model.repository.IImageLoader;
 import com.example.cats.mvp.model.repository.ImageLoaderImpl;
+import com.example.cats.ui.activity.MainActivity;
 
 public class CatItemFragment extends Fragment {
 
@@ -43,12 +44,15 @@ public class CatItemFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item, container, false);
-        ImageView imageView = (ImageView) getView().findViewById(R.id.fragment_item_image);
+        ImageView imageView = (ImageView) view.findViewById(R.id.fragment_item_image);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
         IImageLoader imageLoader = new ImageLoaderImpl();
-        imageLoader.loadInto(cat.getPictureUrl(), imageView, width);
+        if (cat != null) {
+            imageLoader.loadInto(cat.getPictureUrl(), imageView, width);
+        }
+        ((MainActivity) getActivity()).setTitle(cat.getName());
         return view;
     }
 }

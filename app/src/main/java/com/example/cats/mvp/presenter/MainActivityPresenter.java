@@ -10,7 +10,7 @@ public class MainActivityPresenter {
         this.mainView = mainView;
     }
 
-    public void onCreated() {
+    public void onFirstCreate() {
         this.mainView.setCatsFragment();
     }
 }
