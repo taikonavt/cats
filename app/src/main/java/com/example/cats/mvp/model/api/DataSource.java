@@ -4,6 +4,7 @@ import com.example.cats.mvp.model.entity.Cat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DataSource implements IDataSource {
 
@@ -20,7 +21,7 @@ public class DataSource implements IDataSource {
 
     private List<Cat> createCatList() {
         String[] names = {
-                "Барсик",
+                "Барсик"  + (new Random()).nextInt(),
                 "Кэсис",
                 "Ферруцио",
                 "Клементе",

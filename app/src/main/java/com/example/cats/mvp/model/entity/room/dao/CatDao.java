@@ -47,8 +47,17 @@ public interface CatDao {
 
 
     @Query("SELECT * FROM roomcat")
-    LiveData<List<RoomCat>> getAll();
+    LiveData<List<RoomCat>> getLiveAll();
 
-    @Query("SELECT * FROM roomcat WHERE pictureUrl = :url LIMIT 1")
-    RoomCat findByUrl(String url);
+    @Query("SELECT * FROM roomcat")
+    List<RoomCat> getAll();
+
+    @Query("SELECT * FROM roomcat WHERE name = :name LIMIT 1")
+    RoomCat findByName(String name);
+
+    @Query("DELETE FROM roomcat WHERE isUpdated = 0")
+    void deleteNotUpdated();
+
+    @Query("UPDATE roomcat SET isUpdated = 0")
+    void setAllIsNotUpdated();
 }

@@ -11,10 +11,12 @@ public class RoomCat {
     @PrimaryKey
     private String name;
     private String pictureUrl;
+    private int isUpdated;
 
     public RoomCat(@NonNull String name, String pictureUrl){
         this.name = name;
         this.pictureUrl = pictureUrl;
+        this.isUpdated = 1;
     }
 
 
@@ -33,5 +35,13 @@ public class RoomCat {
 
     public void setPictureUrl(String url) {
         this.pictureUrl = url;
+    }
+
+    public int getIsUpdated() {
+        return isUpdated;
+    }
+
+    public void setIsUpdated(int isUpdated) {
+        this.isUpdated = isUpdated;
     }
 }
