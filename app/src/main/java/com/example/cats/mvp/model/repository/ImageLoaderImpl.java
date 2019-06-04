@@ -67,10 +67,13 @@ public class ImageLoaderImpl implements IImageLoader {
         private Bitmap resizeBitmap(Bitmap bitmap){
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-            int ratio = width / imageWidth;
-            int imageHeight = height / ratio;
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, imageWidth, imageHeight, true);
-            return resizedBitmap;
+            if(width > imageWidth) {
+                int ratio = width / imageWidth;
+                int imageHeight = height / ratio;
+                return Bitmap.createScaledBitmap(bitmap, imageWidth, imageHeight, true);
+            } else {
+                return bitmap;
+            }
         }
     }
 }
