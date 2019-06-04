@@ -23,6 +23,7 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        // составить из CustomView список
         View view = new CustomView(viewGroup.getContext());
         return new MyViewHolder(view);
     }

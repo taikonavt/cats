@@ -29,6 +29,7 @@ public class RoomCache implements ICache {
         });
     }
 
+    // кешировать список и при новом старте приложения проверять только изменения
     @Override
     public void updateCatList(final List<Cat> catList) {
         List<RoomCat> roomCatList = CatDatabase.getInstance().getCatDao()

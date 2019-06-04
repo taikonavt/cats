@@ -17,6 +17,7 @@ import java.net.URL;
 public class ImageLoaderImpl implements IImageLoader {
     private AsyncTask asyncTask;
 
+    // получить изображения через сетевые запросы в runtime
     @Override
     public void loadInto(String pictureUrl, View view, int imageWidth) {
         try {

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // сделать переход из списка на экран отдельного элемента анимированным
     @Override
     public void setCatItemFragment(Cat cat) {
         CatItemFragment fragment = CatItemFragment.getInstance(cat);

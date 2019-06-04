@@ -29,6 +29,7 @@ public class CatsFragmentPresenter {
         return catListPresenter;
     }
 
+    // добавить swipe to refresh для проверки обновления списка
     public void onSwipeRefresh() {
         repository.updateCatsList();
     }

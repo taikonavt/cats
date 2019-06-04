@@ -22,6 +22,7 @@ public class CatItemFragment extends Fragment {
 
     private Cat cat;
 
+    // добавить экран отдельного item'a
     public static CatItemFragment getInstance(Cat cat) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(CAT_KEY, cat);
