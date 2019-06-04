@@ -15,13 +15,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ImageLoaderImpl implements IImageLoader {
+    private AsyncTask asyncTask;
 
     @Override
     public void loadInto(String pictureUrl, View view, int imageWidth) {
         try {
             URL url = new URL(pictureUrl);
             DownloadImageTask task = new DownloadImageTask();
-            task.execute(url, view, imageWidth);
+            if (asyncTask != null){
+                asyncTask.cancel(true);
+            }
+            asyncTask = task.execute(url, view, imageWidth);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

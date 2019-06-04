@@ -15,11 +15,9 @@ import com.example.cats.ui.customviews.CustomView;
 public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyViewHolder> {
 
     private ICatListPresenter presenter;
-    private IImageLoader imageLoader;
 
     public CatsListAdapter(ICatListPresenter presenter){
         this.presenter = presenter;
-        imageLoader = new ImageLoaderImpl();
     }
 
     @NonNull
@@ -48,9 +46,11 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements CatItemView {
         private int position;
+        private IImageLoader imageLoader;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageLoader = new ImageLoaderImpl();
         }
 
         @Override
